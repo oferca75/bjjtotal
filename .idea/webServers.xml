@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="f8d5086e-c167-4157-8b3d-cfe838008b1d" name="bjjtotal" url="http://ftp.byethost10.com">
+        <fileTransfer host="ftp.byethost10.com" port="21" password="dfc5dfccdfcfdfd8dfd9df9bdf99df9edf9cdf9ddf93" username="b10_17760370">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+          <option name="port" value="21" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
