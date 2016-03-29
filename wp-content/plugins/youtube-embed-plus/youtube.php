@@ -40,8 +40,8 @@ function preyoutube_function($content,$isFirstVideo, $atts) {
    // $heightStr = "&height=350";
     $widthStr = "&width=550";
     } else {
-    //$heightStr = "&height=150";
-     $widthStr = "&width=200";
+    $heightStr = "&height=150";
+    // $widthStr = "&width=200";
 
     }
     $getParams="$widthStr$heightStr&autoplay=".$autoPlay;

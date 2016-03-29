@@ -43,11 +43,13 @@
 
 
             <?php
-            //get all posts for children of category $cata
-
-
             $title = isset($post->post_title) ? $post->post_title : '';
-            query_posts(array('posts_per_page' => 5, 'category__in' => array(get_cat_ID($title))));
+            $next_moves = query_posts(array('posts_per_page' => 5, 'category__in' => array(get_cat_ID($title))));
+            if (count($next_moves) > 0) {
+                ?>
+                <h2>Next moves:</h2>
+                <?php
+            }
             while (have_posts()) {
                 the_post();
                 get_template_part('content', get_post_format($post->ID));
@@ -60,9 +62,7 @@
 
             ?>
 
-            
-            
-            
+
             <div id="comments">
                 <?php
                 // If comments are open or we have at least one comment, load up the comment template
