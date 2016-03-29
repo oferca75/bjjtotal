@@ -35,8 +35,15 @@ define('WP_DEBUG', true);
 
 function preyoutube_function($content,$isFirstVideo, $atts) {
     $autoPlay = !$GLOBALS['wp_the_query']->is_single || $isFirstVideo ? 1 : 0;
-    if ($GLOBALS['wp_the_query']->is_single ) {$height = "450";} else {$height = "150";}
-    $getParams="&height=$height&autoplay=".$autoPlay;
+    if ($GLOBALS['wp_the_query']->is_single ) {
+   // $heightStr = "&height=350";
+    $widthStr = "&width=550";
+    } else {
+    //$heightStr = "&height=150";
+     $widthStr = "&width=200";
+
+    }
+    $getParams="$widthStr$heightStr&autoplay=".$autoPlay;
      if ($content){
         return $content.$getParams;
     }
