@@ -34,8 +34,9 @@ define('WP_DEBUG', true);
 
 
 function preyoutube_function($content,$isFirstVideo, $atts) {
-    $autoPlay = !$GLOBALS['wp_the_query']->is_single || $isFirstVideo ? 1 : 0;
-    if ($GLOBALS['wp_the_query']->is_single ) {
+//    $autoPlay = !$GLOBALS['wp_the_query']->is_single || $isFirstVideo ? 1 : 0;
+    $autoPlay  =1;
+    if ($GLOBALS['wp_the_query']->is_single && $isFirstVideo ) {
    // $heightStr = "&height=350";
     $widthStr = "&width=550";
     } else {

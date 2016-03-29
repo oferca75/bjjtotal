@@ -40,6 +40,29 @@
             ));
             ?>
             <?php edit_post_link(__('Edit', 'gridster'), '<span class="edit-link">', '</span>'); ?>
+
+
+            <?php
+            //get all posts for children of category $cata
+
+
+            $title = isset($post->post_title) ? $post->post_title : '';
+            query_posts(array('posts_per_page' => 5, 'category__in' => array(get_cat_ID($title))));
+            while (have_posts()) {
+                the_post();
+                get_template_part('content', get_post_format($post->ID));
+            } ?>
+
+            <?php
+            //Reset Query
+            wp_reset_query();
+
+
+            ?>
+
+            
+            
+            
             <div id="comments">
                 <?php
                 // If comments are open or we have at least one comment, load up the comment template
