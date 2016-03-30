@@ -34,17 +34,14 @@ define('WP_DEBUG', true);
 
 
 function preyoutube_function($content,$isFirstVideo, $atts) {
-//    $autoPlay = !$GLOBALS['wp_the_query']->is_single || $isFirstVideo ? 1 : 0;
-    $autoPlay  =1;
-    if ($GLOBALS['wp_the_query']->is_single && $isFirstVideo ) {
-   // $heightStr = "&height=350";
-    $widthStr = "&width=550";
+    $getParams = "&autoplay=1";
+    if (isSingleVideoPost($isFirstVideo) ) {
+    $getParams .= "&width=550";
     } else {
-    $heightStr = "&height=150";
-    // $widthStr = "&width=200";
-
+    $getParams .= "&height=150";
+    //$getParams .= "&start=20";
+    $getParams .= "&loop=1";
     }
-    $getParams="$widthStr$heightStr&autoplay=".$autoPlay;
      if ($content){
         return $content.$getParams;
     }
@@ -52,6 +49,11 @@ function preyoutube_function($content,$isFirstVideo, $atts) {
     $preyt_output = "https://www.youtube.com/watch?v=".$atts["id"].$getParams;
     //send back text to calling function
     return $preyt_output;
+}/**
+* @param $isFirstVideo
+ * @return bool
+*/function isSingleVideoPost($isFirstVideo){
+return $GLOBALS['wp_the_query']->is_single && $isFirstVideo;
 }
 
 function this_plugin_first() {
