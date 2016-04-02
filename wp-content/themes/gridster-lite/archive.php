@@ -111,7 +111,7 @@ get_header(); ?>
             }
         );
         if (count($vertexPost) > 0) {
-            $filterPostId = $vertexPost[0]->ID;
+            $filterPostId = current($vertexPost)->ID;
         }
         if ($_query->have_posts()):
             while ($_query->have_posts()):

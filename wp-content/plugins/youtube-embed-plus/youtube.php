@@ -54,8 +54,6 @@ function preyoutube_function($content,$isFirstVideo, $atts) {
  * @return bool
 */function isSingleVideoPost($isFirstVideo){
 $category_name = $GLOBALS['wp_query']->queried_object->name;
-//echo "<pre>".print_r($GLOBALS['wp_query'],true)."</pre>";
-
 foreach ($GLOBALS['wp_query']->posts as $post){
     if ($post->post_title == $category_name){
         return true;
