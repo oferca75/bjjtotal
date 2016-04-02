@@ -53,6 +53,13 @@ function preyoutube_function($content,$isFirstVideo, $atts) {
 * @param $isFirstVideo
  * @return bool
 */function isSingleVideoPost($isFirstVideo){
+$category_name = $GLOBALS['wp_query']->query["category_name"];
+foreach ($GLOBALS['wp_query']->posts as $post){
+    if ($post->post_title == $category_name){
+        return true;
+    }
+}
+
 return $GLOBALS['wp_the_query']->is_single && $isFirstVideo;
 }
 

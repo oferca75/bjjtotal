@@ -38,7 +38,7 @@
                 'before' => '<div class="page-links">' . __('Pages:', 'gridster'),
                 'after' => '</div>',
             ));
-            ?>
+            ?>  
             <?php edit_post_link(__('Edit', 'gridster'), '<span class="edit-link">', '</span>'); ?>
 
 

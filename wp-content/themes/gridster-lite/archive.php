@@ -102,13 +102,26 @@ get_header(); ?>
                     'terms' => $cat_id //change the term id here
                 )
             )
-        );
+        );//array_search ($category->name,array_column($_query->posts, 'post_title'));   
         $_query = new WP_Query($args);
-
+        $vertexPost = array_filter(
+            $_query->posts,
+            function ($e) use ($category) {
+                return $e->post_title === $category->name;
+            }
+        );
+        if (count($vertexPost) > 0) {
+            $filterPostId = $vertexPost[0]->ID;
+        }
         if ($_query->have_posts()):
             while ($_query->have_posts()):
                 $_query->the_post();
-                get_template_part('content', $_query->get_post_format());
+                if (!$filterPostId) {
+                    get_template_part('content', $_query->get_post_format());
+                } elseif ($filterPostId == $post->ID) {
+                    get_template_part('content', 'single');
+                }
+
 
                 //do something here the_title() etc
             endwhile;
