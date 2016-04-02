@@ -44,7 +44,9 @@
 
             <?php
             $title = isset($post->post_title) ? $post->post_title : '';
-            $next_moves = query_posts(array('posts_per_page' => 5, 'category__in' => array(get_cat_ID($title))));
+            $next_moves = query_posts(array('posts_per_page' => 20,
+                'category__in' => array(get_cat_ID($title)),
+                'post__not_in' => array($post->ID)));
             if (count($next_moves) > 0) {
                 ?>
                 <h2>Next moves:</h2>

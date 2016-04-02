@@ -82,16 +82,51 @@ get_header(); ?>
             ?>
         </header>
         <!-- .page-header -->
-        <?php /* Start the Loop */ ?>
-        <?php while (have_posts()) : the_post(); ?>
-            <?php
-            /* Include the Post-Format-specific template for the content.
-             * If you want to overload this in a child theme then include a file
-             * called content-___.php (where ___ is the Post Format name) and that will be used instead.
-             */
-            get_template_part('content', get_post_format());
-            ?>
-        <?php endwhile; ?>
+
+
+        <?php
+
+
+        if (is_category()) {
+            $category = get_category(get_query_var('cat'));
+            $cat_id = $category->cat_ID;
+        }
+
+        $args = array(
+            'post_status' => 'publish',
+            'tax_query' => array(
+                array(
+                    'taxonomy' => 'category', //change the taxonomy name here
+                    'field' => 'id',
+                    'include_children' => false,
+                    'terms' => $cat_id //change the term id here
+                )
+            )
+        );
+        $_query = new WP_Query($args);
+
+        if ($_query->have_posts()):
+            while ($_query->have_posts()):
+                $_query->the_post();
+                get_template_part('content', $_query->get_post_format());
+
+                //do something here the_title() etc
+            endwhile;
+        endif;
+
+        wp_reset_query();
+
+
+        ?>
+        <!--        --><?php //while (have_posts()) : the_post(); ?>
+        <!--            --><?php
+//            /* Include the Post-Format-specific template for the content.
+//             * If you want to overload this in a child theme then include a file
+//             * called content-___.php (where ___ is the Post Format name) and that will be used instead.
+//             */
+//            get_template_part('content', get_post_format());
+//            ?>
+        <!--        --><?php //endwhile; ?>
         <?php gridster_content_nav('nav-below'); ?>
     <?php else : ?>
         <?php get_template_part('no-results', 'archive'); ?>
