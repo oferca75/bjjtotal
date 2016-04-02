@@ -1079,7 +1079,11 @@ return ($GLOBALS['wp_the_query']->is_single && self::$vidCount == 0);
 
 //        if (self::$alloptions[self::$opt_defaultvol] == 1)
 //        {
-          $volume  =  self::isFirstVideo() ? 100 : 0;
+
+          $isSearchTemplate = strpos($GLOBALS["template"],"search.php") > 0;
+          $isHomeTemplate = strpos($GLOBALS["template"],"home.php") > 0;
+          $isFirstVideo = self::$vidCount == 0;
+          $volume  =  $isSearchTemplate || $isHomeTemplate ? 0 : $isFirstVideo ? 100 : 0;
             $voloutput = ' data-vol="' . $volume . '" ';
 //        }
             self::$vidCount++;
