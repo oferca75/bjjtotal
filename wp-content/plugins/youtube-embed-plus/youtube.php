@@ -1080,6 +1080,7 @@ return ($GLOBALS['wp_the_query']->is_single && self::$vidCount == 0);
 //        if (self::$alloptions[self::$opt_defaultvol] == 1)
 //        {
 
+
           $isSearchTemplate = strpos($GLOBALS["template"],"search.php") > 0;
           $isHomeTemplate = strpos($GLOBALS["template"],"home.php") > 0;
           $isFirstVideo = self::$vidCount == 0;
