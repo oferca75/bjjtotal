@@ -7,6 +7,16 @@ get_header(); ?>
 
         if (have_posts()) :
             while (have_posts()) : the_post();
+
+                $posttags = get_the_tags();
+                if ($posttags) {
+                    foreach ($posttags as $tag) {
+                        if ($tag->name == "position") {
+                            $isPosition = true;
+                        }
+                    }
+                }
+
                 // breadcrumbs for the WordPress SEO Plugin by Yoast- if you want to use this, uncomment the line, below:
                 //if ( function_exists('yoast_breadcrumb') ) { yoast_breadcrumb('<p id="breadcrumbs">','</p>'); } ?>
                 <article itemscope itemtype="http://schema.org/BlogPosting"
@@ -49,7 +59,11 @@ get_header(); ?>
                         ?>
                         <div itemprop="articleBody">
                             <?php
-                            the_content();
+                            if (!$isPosition) {
+                                the_content();
+                            } else {
+                                ?><br><?php
+                            }
                             ?>
                         </div>
                         <div class="cf"></div>
@@ -75,12 +89,19 @@ get_header(); ?>
     <?php
     global $post;
     $title = isset($post->post_title) ? $post->post_title : '';
-    $next_moves = query_posts(array('posts_per_page' => 20,
-        'category__in' => array(get_cat_ID($title)),
-        'post__not_in' => array($post->ID)));
+    $queryParams = array('posts_per_page' => 20,
+        'category__in' => array(get_cat_ID($title))
+//     ,'post__not_in' => array($post->ID)
+    );
+    if (!$isPosition) {
+        $queryParams['post__not_in'] = array($post->ID);
+    }
+    $next_moves = query_posts($queryParams);
     if (count($next_moves) > 0) {
-        ?>
-        <h2><span class="next-moves">Next moves:</span></h2>
+        if (!$isPosition) {
+            ?>
+            <h2><span class="next-moves">Next moves:</span></h2>
+        <?php } ?>
         <div id="content" class="cf">
             <?php
             if (have_posts()) :

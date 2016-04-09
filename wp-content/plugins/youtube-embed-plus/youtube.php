@@ -33,9 +33,9 @@ define('WP_DEBUG', true);
 
 
 
-function preyoutube_function($content,$isFirstVideo, $atts) {
+function preyoutube_function($content,$isFirstVideo,$isPosition, $atts) {
     $getParams = "&autoplay=1";
-    if (isSingleVideoPost($isFirstVideo) ) {
+    if (isSingleVideoPost($isFirstVideo) && !$isPosition ) {
     $getParams .= "&width=550";
     } else {
     $getParams .= "&height=200";
@@ -997,7 +997,7 @@ public static function get_blogwidth()
 
     public static function apply_prefs_shortcode($atts, $content = null)
     {
-        $content = preyoutube_function(trim($content),self::isFirstVideo(),$atts);
+        $content = preyoutube_function(trim($content),self::isFirstVideo(),self::isPosition(),$atts);
         $currfilter = current_filter();
         if (preg_match(self::$justurlregex, $content))
         {
@@ -1011,11 +1011,21 @@ public static function get_blogwidth()
 */public static function isFirstVideo(){
 return ($GLOBALS['wp_the_query']->is_single && self::$vidCount == 0);
 }
+public static function isPosition(){
+if ($GLOBALS["posttags"] ){
+ foreach($GLOBALS["posttags"] as $tag){
+            if ($tag->name == "position"){
+                return true;
+            }
+          }
+          }
+          return false;
+}
 
     public static function get_html($m, $iscontent)
     {
         //$time_start = microtime(true);
-        $link = trim(str_replace(self::$badentities, self::$goodliterals, preyoutube_function($m[0],self::isFirstVideo(),array())));
+        $link = trim(str_replace(self::$badentities, self::$goodliterals, preyoutube_function($m[0],self::isFirstVideo(),self::isPosition(),array())));
 
         $link = preg_replace('/\s/', '', $link);
         $linkparamstemp = explode('?', $link);
@@ -1085,7 +1095,7 @@ return ($GLOBALS['wp_the_query']->is_single && self::$vidCount == 0);
           $isHomeTemplate = strpos($GLOBALS["template"],"home.php") > 0;
           $isArchiveTemplate = strpos($GLOBALS["template"],"archive.php") > 0;
           $isFirstVideo = self::$vidCount == 0;
-          $volume  =  $isSearchTemplate || $isHomeTemplate || $isArchiveTemplate ? 0 : $isFirstVideo ? 100 : 0;
+          $volume  =  $isSearchTemplate || $isHomeTemplate || $isArchiveTemplate || self::isPosition() ? 0 : $isFirstVideo ? 100 : 0;
             $voloutput = ' data-vol="' . $volume . '" ';
 //        }
             self::$vidCount++;
