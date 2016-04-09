@@ -33,3 +33,87 @@ body {
     background-image: url('img/bjjbkg.png') !important;
 }
 
+@font-face {
+    font-family: bjj;
+    src: url(ttf/Dream MMA.ttf);
+    font-weight: normal;
+}
+
+h2 {
+    font-family: bjj;
+
+}
+
+h1 {
+    font-style: italic;
+    font-family: bjj;
+    color: #FFD35E;
+    background: -webkit-linear-gradient(#FF9901, yellow);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 72px;
+
+}
+
+.portfoliooverlay span {
+    font-size: 40px;
+    font-weight: bold;
+    background-color: #384249;
+    height: 45px;
+    width: 75px;
+    display: block;
+    text-align: center;
+    margin: 0 auto;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    margin-left: 80px;
+    margin-top: 45px;
+    -moz-opacity: 0.20;
+    -khtml-opacity: 0.20;
+    opacity: 0.20;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha"(Opacity=20);
+    padding-top: 30px;
+    -moz-border-radius: 75px;
+    -webkit-border-radius: 75px;
+    border-radius: 75px;
+    line-height: 15px;
+}
+
+.portfoliooverlay:hover span {
+    -webkit-transition: opacity 1s ease-in-out;
+    opacity: 0.8;
+    -webkit-transition-duration: 0.4s;
+    -moz-transition: opacity 1s ease-in-out;
+    opacity: 0.8;
+    -moz-transition-duration: 0.4s;
+}
+
+.portfoliooverlay {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 225px;
+    height: 158px;
+}
+
+.portfoliooverlay:hover {
+    -webkit-transition: border-bottom 1s ease-in-out;
+    opacity: 1;
+    -webkit-transition-duration: 0.4s;
+    -moz-transition: border-bottom 1s ease-in-out;
+    opacity: 1;
+    -moz-transition-duration: 0.4s;
+}
+
+.portfoliooverlay a {
+    color: white;
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.portfoliooverlay a:hover {
+    color: white;
+    transition: all 0.5s ease-out;
+}

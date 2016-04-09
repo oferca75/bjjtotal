@@ -18,6 +18,7 @@ if (is_sticky() && get_query_var('paged') < 2) {
 ?>>
     <?php
     if (get_the_title()): ?>
+        <div class="portfoliooverlay"><a href="<?php the_permalink(); ?>"> </a></div>
         <h2><a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title(); ?>"><?php the_title(); ?></a>
         </h2>
         <!--        --><?php //if (has_post_thumbnail()) the_post_thumbnail('featured-img', array('class' => 'alignnone'));
