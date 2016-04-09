@@ -1,5 +1,7 @@
 <?php
+
 $post_count = 0;
+
 while (have_posts()) :
     the_post();
     if ($post_count > 0 && $post_count % 3 == 0) {
@@ -40,10 +42,11 @@ if (is_sticky() && get_query_var('paged') < 2) {
                     the_category(', ');
                 }
                 _e(' by ', 'fluid-baseline-grid');
-                the_author_posts_link(); ?></em></p>
+                // the_author_posts_link(); ?></em></p>
         <?php
     endif;
-    the_excerpt(); ?>
+    //the_excerpt(); 
+    ?>
     </div><?php
 endwhile;
 ?>

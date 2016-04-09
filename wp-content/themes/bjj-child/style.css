@@ -44,7 +44,7 @@ h2 {
 
 }
 
-h1 {
+h1, .next-moves {
     font-style: italic;
     font-family: bjj;
     color: #FFD35E;
@@ -53,6 +53,11 @@ h1 {
     -webkit-text-fill-color: transparent;
     font-size: 72px;
 
+}
+
+.next-moves {
+    padding: 20px;
+    line-height: 100px;
 }
 
 .portfoliooverlay span {
@@ -93,8 +98,8 @@ h1 {
     position: absolute;
     top: 0px;
     left: 0px;
-    width: 225px;
-    height: 158px;
+    width: 100%;
+    height: 100%;
 }
 
 .portfoliooverlay:hover {
