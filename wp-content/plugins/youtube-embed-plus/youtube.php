@@ -1016,7 +1016,7 @@ public static function isNotSingle(){
   $isSearchTemplate = strpos($GLOBALS["template"],"search.php") > 0;
   $isHomeTemplate = strpos($GLOBALS["template"],"home.php") > 0;
   $isArchiveTemplate = strpos($GLOBALS["template"],"archive.php") > 0;
-  return $isSearchTemplate || $isHomeTemplate || $isArchiveTemplate || self::isPosition();
+  return !$_GET["ov"] && ( $isSearchTemplate || $isHomeTemplate || $isArchiveTemplate || self::isPosition());
 }
 
 public static function isPosition(){

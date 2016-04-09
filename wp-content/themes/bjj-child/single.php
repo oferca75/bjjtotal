@@ -9,7 +9,7 @@ get_header(); ?>
             while (have_posts()) : the_post();
 
                 $posttags = get_the_tags();
-                if ($posttags) {
+                if ( $posttags && !$_GET[ "ov" ] ) {
                     foreach ($posttags as $tag) {
                         if ($tag->name == "position") {
                             $isPosition = true;
@@ -90,8 +90,7 @@ get_header(); ?>
     global $post;
     $title = isset($post->post_title) ? $post->post_title : '';
     $queryParams = array('posts_per_page' => 20,
-        'category__in' => array(get_cat_ID($title))
-//     ,'post__not_in' => array($post->ID)
+            'category__in' => array( get_cat_ID ( $title ) ) ,
     );
     if (!$isPosition) {
         $queryParams['post__not_in'] = array($post->ID);
@@ -105,6 +104,7 @@ get_header(); ?>
         <div id="content" class="cf">
             <?php
             if (have_posts()) :
+                set_query_var ( 'post_title' , $title );
                 get_template_part('loop');
                 ?>
                 <div class="navigation g3 cf"><p><?php posts_nav_link(); ?></p></div>
