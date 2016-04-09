@@ -33,9 +33,9 @@ define('WP_DEBUG', true);
 
 
 
-function preyoutube_function($content,$isFirstVideo,$isPosition, $atts) {
+function preyoutube_function($content,$isFirstVideo,$isNotSingle, $atts) {
     $getParams = "&autoplay=1";
-    if (isSingleVideoPost($isFirstVideo) && !$isPosition ) {
+    if (isSingleVideoPost($isFirstVideo) && !$isNotSingle ) {
     $getParams .= "&width=550";
     } else {
     $getParams .= "&height=200";
@@ -997,7 +997,7 @@ public static function get_blogwidth()
 
     public static function apply_prefs_shortcode($atts, $content = null)
     {
-        $content = preyoutube_function(trim($content),self::isFirstVideo(),self::isPosition(),$atts);
+        $content = preyoutube_function(trim($content),self::isFirstVideo(),self::isNotSingle(),$atts);
         $currfilter = current_filter();
         if (preg_match(self::$justurlregex, $content))
         {
@@ -1011,6 +1011,14 @@ public static function get_blogwidth()
 */public static function isFirstVideo(){
 return ($GLOBALS['wp_the_query']->is_single && self::$vidCount == 0);
 }
+
+public static function isNotSingle(){
+  $isSearchTemplate = strpos($GLOBALS["template"],"search.php") > 0;
+  $isHomeTemplate = strpos($GLOBALS["template"],"home.php") > 0;
+  $isArchiveTemplate = strpos($GLOBALS["template"],"archive.php") > 0;
+  return $isSearchTemplate || $isHomeTemplate || $isArchiveTemplate || self::isPosition();
+}
+
 public static function isPosition(){
 if ($GLOBALS["posttags"] ){
  foreach($GLOBALS["posttags"] as $tag){
@@ -1022,10 +1030,10 @@ if ($GLOBALS["posttags"] ){
           return false;
 }
 
-    public static function get_html($m, $iscontent)
+  		  public static function get_html($m, $iscontent)
     {
         //$time_start = microtime(true);
-        $link = trim(str_replace(self::$badentities, self::$goodliterals, preyoutube_function($m[0],self::isFirstVideo(),self::isPosition(),array())));
+        $link = trim(str_replace(self::$badentities, self::$goodliterals, preyoutube_function($m[0],self::isFirstVideo(),self::isNotSingle(),array())));
 
         $link = preg_replace('/\s/', '', $link);
         $linkparamstemp = explode('?', $link);
@@ -1070,7 +1078,7 @@ if ($GLOBALS["posttags"] ){
             }
             catch (Exception $ex)
             {
-                
+
             }
         }
 
@@ -1091,11 +1099,8 @@ if ($GLOBALS["posttags"] ){
 //        {
 
 
-          $isSearchTemplate = strpos($GLOBALS["template"],"search.php") > 0;
-          $isHomeTemplate = strpos($GLOBALS["template"],"home.php") > 0;
-          $isArchiveTemplate = strpos($GLOBALS["template"],"archive.php") > 0;
-          $isFirstVideo = self::$vidCount == 0;
-          $volume  =  $isSearchTemplate || $isHomeTemplate || $isArchiveTemplate || self::isPosition() ? 0 : $isFirstVideo ? 100 : 0;
+        $isFirstVideo = self::$vidCount == 0;
+          $volume  =  self::isNotSingle() ? 0 : $isFirstVideo ? 100 : 0;
             $voloutput = ' data-vol="' . $volume . '" ';
 //        }
             self::$vidCount++;
@@ -1166,7 +1171,7 @@ if ($GLOBALS["posttags"] ){
                 }
                 else
                 {
-                    
+
                     if (isset($linkparams['list']))
                     {
                         $odata = self::get_oembed('http://youtube.com/playlist?list=' . $linkparams['list'], 1920, 1280);
@@ -1186,7 +1191,7 @@ if ($GLOBALS["posttags"] ){
             }
             catch (Exception $e)
             {
-                
+
             }
         }
 
@@ -1205,7 +1210,7 @@ if ($GLOBALS["posttags"] ){
             }
             catch (Exception $ex)
             {
-                
+
             }
         }
 
@@ -1265,7 +1270,7 @@ if ($GLOBALS["posttags"] ){
                 {
                     if (!empty($galleryCode) && ($key == 'listType' || $key == 'list'))
                     {
-                        
+
                     }
                     else
                     {
@@ -1413,7 +1418,7 @@ if ($GLOBALS["posttags"] ){
         }
         catch (Exception $ex)
         {
-            
+
         }
         return $schemaorgcode;
     }
@@ -1454,7 +1459,7 @@ if ($GLOBALS["posttags"] ){
             }
             catch (Exception $ex)
             {
-                
+
             }
         }
 
