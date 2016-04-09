@@ -55,9 +55,13 @@ h1, .next-moves {
 
 }
 
+h1, div[itemprop="articleBody"] {
+    text-align: center;
+}
+
 .next-moves {
     padding: 20px;
-    line-height: 100px;
+    line-height: 150px;
 }
 
 .portfoliooverlay span {
@@ -122,3 +126,5 @@ h1, .next-moves {
     color: white;
     transition: all 0.5s ease-out;
 }
+
+.post
