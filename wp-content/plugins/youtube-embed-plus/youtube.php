@@ -38,7 +38,7 @@ function preyoutube_function($content,$isFirstVideo, $atts) {
     if (isSingleVideoPost($isFirstVideo) ) {
     $getParams .= "&width=550";
     } else {
-    $getParams .= "&height=150";
+    $getParams .= "&height=200";
     //$getParams .= "&start=20";
     $getParams .= "&loop=1";
     }

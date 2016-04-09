@@ -11,3 +11,25 @@
 
 /* =Theme customization starts here
 ------------------------------------------------------- */
+
+.post iframe {
+
+    border: 4px dotted #000;
+    box-shadow: inset 0 -1px 0 0 #000, inset 0 1px 0 0 #000, 0 1px 0 0 #000, 0 -1px 0 0 #000;
+    margin-bottom: 1px;
+}
+
+.post:nth-child(even) iframe {
+    background-color: red;
+
+}
+
+.post:nth-child(odd) iframe {
+    background-color: wheat;
+
+}
+
+body {
+    background-image: url('img/bjjbkg.png') !important;
+}
+
