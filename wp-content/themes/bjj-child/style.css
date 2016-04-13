@@ -11,7 +11,7 @@
 
 /* =Theme customization starts here
 ------------------------------------------------------- */
-
+/*
 .post iframe {
 
     border: 4px dotted #000;
@@ -62,8 +62,7 @@ h1, div[itemprop="articleBody"] {
 .next-moves {
     padding: 20px;
     line-height: 150px;
-}
-
+} 
 .portfoliooverlay span {
     font-size: 40px;
     font-weight: bold;
@@ -98,6 +97,7 @@ h1, div[itemprop="articleBody"] {
     -moz-transition-duration: 0.4s;
 }
 
+*/
 .portfoliooverlay {
     position: absolute;
     top: 0px;
@@ -114,7 +114,6 @@ h1, div[itemprop="articleBody"] {
     opacity: 1;
     -moz-transition-duration: 0.4s;
 }
-
 .portfoliooverlay a {
     color: white;
     display: block;
@@ -126,5 +125,3 @@ h1, div[itemprop="articleBody"] {
     color: white;
     transition: all 0.5s ease-out;
 }
-
-.post

@@ -1,5 +1,9 @@
 <?php get_header('archive');
 ?>
+<aside id="sidebar-2">
+    <?php if ( !function_exists ( 'dynamic_sidebar' ) || !dynamic_sidebar ( 'sidebar-2' ) ) {
+    } ?>
+</aside>
 <div id="content" style="text-align: center" class="cf">
 
     <div class="post">

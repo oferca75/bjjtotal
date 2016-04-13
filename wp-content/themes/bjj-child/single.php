@@ -1,5 +1,9 @@
 <?php
 get_header(); ?>
+<aside id="sidebar-2">
+    <?php if ( !function_exists ( 'dynamic_sidebar' ) || !dynamic_sidebar ( 'sidebar-2' ) ) {
+    } ?>
+</aside>
 <div id="content" class="cf">
     <div class="<?php echo (is_active_sidebar('post-sidebar')) ? "g2" : "g3"; ?>">
         <?php

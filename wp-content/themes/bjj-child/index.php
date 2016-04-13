@@ -1,4 +1,5 @@
 <?php get_header(); ?>
+
 <div id="content" class="cf">
     <?php
     if (have_posts()) :
